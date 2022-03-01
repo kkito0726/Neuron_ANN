@@ -1,11 +1,7 @@
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPool2D, Dense, Activation, Flatten
-from tensorflow.keras.utils import plot_model, to_categorical
-from sklearn.model_selection import GridSearchCV
 import matplotlib.pyplot as plt
 import numpy as np
-from keras.wrappers.scikit_learn import KerasRegressor
-from sklearn.model_selection import GridSearchCV
 from scipy.optimize import curve_fit
 
 def model_mlp(activation="relu", output_neuron=2):
@@ -73,7 +69,6 @@ def main():
     t = np.load("./label_data.npy")
 
     model = model_mlp(output_neuron=4)
-    model.summary()
     history = model.fit(X, t, epochs=20, validation_split=0.2)
 
     plot_result(history=history)
